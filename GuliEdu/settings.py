@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0,os.path.join(BASE_DIR,'apps')) #将apps的路径添加到系统路径中
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
+    'users.apps.UsersConfig', #添加新建模块的配置
+    'courses.apps.CoursesConfig',
+    'orgs.apps.OrgsConfig',
+    'operations.apps.OperationsConfig'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -125,3 +129,11 @@ USE_TZ = False #改为false
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+#配置静态文件
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static') #在项目根目录下创建static文件夹
+]
+
+#配置媒体
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/media') #注意不是列表
