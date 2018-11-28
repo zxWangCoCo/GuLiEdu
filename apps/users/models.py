@@ -25,3 +25,24 @@ class UserProfile(AbstractUser) :
     class Meta :
         verbose_name = '用户信息'
         verbose_name_plural = verbose_name
+########################################################################################################################
+    #轮播
+class BannerInfo(models.Model) :
+    #轮播图片
+    image = models.ImageField(upload_to='banner/',verbose_name="轮播图片",max_length=200)
+    #链接地址
+    url = models.URLField(default='http://www.atguigu.com',verbose_name="图片链接",max_length=200)
+    # 创建时间
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
+
+    def __str__(self):
+        return str(self.image)
+
+    class Meta:
+        verbose_name = '轮播图信息'
+        verbose_name_plural = verbose_name
+########################################################################################################################
+#邮箱验证
+class EmailVerifyCode(models.Model) :
+     code = models.CharField(max_length=20,verbose_name="邮箱验证码")
+     email = models.EmailField(max_length=200,verbose_name="验证邮箱")
