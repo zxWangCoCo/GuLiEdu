@@ -46,13 +46,12 @@ class BannerInfo(models.Model) :
 class EmailVerifyCode(models.Model) :
     code = models.CharField(max_length=20,verbose_name="邮箱验证码")
     email = models.EmailField(max_length=200,verbose_name="验证邮箱")
-    send_type = models.IntegerField((1,'register'),(2,'forger'),(3,'change'),verbose_name="验证码类型")
+    send_type = models.IntegerField(choices=((1,'register'),(2,'forger'),(3,'change')),verbose_name="验证码类型")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
 
     def __str__(self):
         return self.code
 
-    class Meta :
-        class Meta:
+    class Meta:
             verbose_name = '验证码信息'
             verbose_name_plural = verbose_name
