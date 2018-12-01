@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from orgs.models import TeacherIfo,OrgInfo
+from orgs.models import OrgInfo,TeacherIfo
 
 # Create your models here.
 ########################################课程表###########################################
@@ -18,8 +18,8 @@ class CourseInfo(models.Model):
     course_notice = models.CharField(max_length=200,verbose_name="课程公告")
     course_need = models.CharField(max_length=200,verbose_name="课程须知")
     teacher_tell = models.CharField(verbose_name="老师告诉你",max_length=200)
-    orgInfo = models.ForeignKey(OrgInfo,verbose_name="所属机构")
-    teacherIfo = models.ForeignKey(TeacherIfo,verbose_name="所属讲师")
+    orgInfo = models.ForeignKey(OrgInfo,verbose_name="所属机构",on_delete=models.CASCADE)
+    teacherIfo = models.ForeignKey(TeacherIfo,verbose_name="所属讲师",on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now,verbose_name="创建时间")
 
     def __str__(self):
@@ -31,7 +31,7 @@ class CourseInfo(models.Model):
 
 class LessonInfo(models.Model):
     name = models.CharField(verbose_name="章节名称",max_length=10)
-    courseInfo = models.ForeignKey(CourseInfo,verbose_name="所属课程")
+    courseInfo = models.ForeignKey(CourseInfo,verbose_name="所属课程",on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
 
     def __str__(self):
@@ -44,7 +44,7 @@ class LessonInfo(models.Model):
 class videoInfo(models.Model):
     name = models.CharField(verbose_name="视频名称", max_length=10)
     study_time = models.IntegerField(default=0,verbose_name="视频时长")
-    lessonInfo = models.ForeignKey(LessonInfo,verbose_name="所属章节")
+    lessonInfo = models.ForeignKey(LessonInfo,verbose_name="所属章节",on_delete=models.CASCADE)
     url = models.URLField(default='http://www.atguigu.com',verbose_name="视频连接",max_length=200)
     add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
 
@@ -59,7 +59,7 @@ class videoInfo(models.Model):
 class SourceInfo(models.Model):
     name = models.CharField(verbose_name="资源名称",max_length=50)
     down_load = models.FileField(upload_to='source/',verbose_name="下载路径",max_length=200)
-    courseInfo = models.ForeignKey(CourseInfo,verbose_name="所属课程")
+    courseInfo = models.ForeignKey(CourseInfo,verbose_name="所属课程",on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
 
     def __str__(self):
