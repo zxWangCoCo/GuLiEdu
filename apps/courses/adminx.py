@@ -6,10 +6,10 @@ from .models import CourseInfo,LessonInfo,videoInfo,SourceInfo
 class CourseInfoXadmin(object):
     list_display = ['image', 'name', 'study_time', 'study_num','leave','love_num','click_num','desc','detail','category','course_notice','course_need','teacher_tell','orgInfo','teacherIfo','add_time']
 
-    search_fields = ['image', 'name', 'study_time', 'study_num', 'leave', 'love_num', 'click_num', 'desc', 'detail',
+    search_fields = ['name', 'study_time', 'study_num', 'leave', 'love_num', 'click_num', 'desc', 'detail',
                     'category', 'course_notice', 'course_need', 'teacher_tell', 'orgInfo', 'teacherIfo']
 
-    list_filter = ['image', 'name', 'study_time', 'study_num', 'leave', 'love_num', 'click_num', 'desc', 'detail',
+    list_filter = ['name', 'study_time', 'study_num', 'leave', 'love_num', 'click_num', 'desc', 'detail',
                     'category', 'course_notice', 'course_need', 'teacher_tell', 'orgInfo', 'teacherIfo']
 
 
@@ -26,17 +26,17 @@ class LessonInfoXadmin(object):
 class videoInfoXadmin(object):
     list_display = ['name', 'study_time', 'lessonInfo','url','add_time']
 
-    search_fields = ['name', 'study_time', 'lessonInfo', 'url']
+    search_fields = ['name', 'study_time', 'lessonInfo']
 
-    list_filter = ['name', 'study_time', 'lessonInfo', 'url', 'add_time']
+    list_filter = ['name', 'study_time', 'lessonInfo','add_time']
 
 
 class SourceInfoXadmin(object):
     list_display =['name','down_load','courseInfo','add_time']
 
-    search_fields = ['name', 'down_load', 'courseInfo']
+    search_fields = ['name','courseInfo']
 
-    list_filter = ['name', 'down_load', 'courseInfo', 'add_time']
+    list_filter = ['name','courseInfo', 'add_time']
 
 
 xadmin.site.register(CourseInfo,CourseInfoXadmin)
