@@ -23,7 +23,7 @@ class OrgInfo(models.Model):
     detail = models.TextField(verbose_name="机构详情")
     love_num = models.IntegerField(default=0,verbose_name="收藏数")
     click_num = models.IntegerField(default=0,verbose_name="点击数")
-    category = models.CharField(choices=(('pxjg',"培训机构"),('gx',"搞笑"),('gr',"个人")),max_length=10,verbose_name='机构类别')
+    category = models.CharField(choices=(('pxjg',"培训机构"),('gx',"高校"),('gr',"个人")),max_length=10,verbose_name='机构类别')
     add_time = models.DateTimeField(default=datetime.now, verbose_name="创建时间")
     cityinfo = models.ForeignKey(CityInfo,verbose_name="所在城市",on_delete=models.CASCADE)
 
