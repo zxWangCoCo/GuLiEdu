@@ -15,6 +15,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,os.path.join(BASE_DIR,'apps')) #将apps的路径添加到系统路径中
+sys.path.insert(0,os.path.join(BASE_DIR,'extra_apps')) #配置xadmin
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -40,9 +41,12 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig', #添加新建模块的配置
     'courses.apps.CoursesConfig',
     'orgs.apps.OrgsConfig',
-    'operations.apps.OperationsConfig'
+    'operations.apps.OperationsConfig',
+    'xadmin', #配置xadmin
+    'crispy_forms' #配置xadmin
 ]
 
+#扩展了AbstractUser类以后必须设置AUTH_USER_MODEL
 AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
