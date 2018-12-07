@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url,include
 #from django.contrib import admin
 import xadmin
+from users.views import index #引入index
 
 urlpatterns = [
    # url(r'^admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     url(r'^courses/',include('courses.urls',namespace='courses')),
     url(r'^orgs/',include('orgs.urls',namespace='orgs')),
     url(r'^operations/',include('operations.urls',namespace='operations')),
+    url(r'^$',index,name='index')#配置首页
 ]
