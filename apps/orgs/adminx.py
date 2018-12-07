@@ -10,6 +10,8 @@ class CityInfoXadmin(object):
     # xadmin增加过滤器
     list_filter = ['name','add_time']
 
+    model_icon = 'fa fa-asterisk'
+
 ##############################机构#####################################################
 class OrgInfoXadmin(object):
     list_display = ['image','name','course_num','course_num','study_num','love_num','click_num','category','cityinfo']
@@ -20,6 +22,8 @@ class OrgInfoXadmin(object):
     # xadmin增加过滤器
     list_filter = ['image','name','course_num','course_num','study_num','love_num','click_num','category','cityinfo']
 
+    model_icon = 'fa fa-asterisk'
+
 #####################################教师表############################################
 class TeacherIfoXadmin(object):
     list_display = ['image', 'name', 'work_year', 'work_position','age', 'gender', 'love_num']
@@ -27,6 +31,8 @@ class TeacherIfoXadmin(object):
     search_fields = ['image', 'name', 'work_year', 'work_position', 'age', 'gender', 'love_num']
 
     list_filter = ['image', 'name', 'work_year', 'work_position', 'age', 'gender', 'love_num']
+
+    model_icon = 'fa fa-asterisk'
 
 xadmin.site.register(CityInfo,CityInfoXadmin)
 xadmin.site.register(OrgInfo,OrgInfoXadmin)
