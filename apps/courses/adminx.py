@@ -12,6 +12,8 @@ class CourseInfoXadmin(object):
     list_filter = ['name', 'study_time', 'study_num', 'leave', 'love_num', 'click_num', 'desc', 'detail',
                     'category', 'course_notice', 'course_need', 'teacher_tell', 'orgInfo', 'teacherIfo']
 
+    model_icon = 'fa fa-address-book'
+
 
 class LessonInfoXadmin(object):
 
@@ -21,6 +23,7 @@ class LessonInfoXadmin(object):
 
     list_filter = ['name', 'courseInfo']
 
+    model_icon = 'fa fa-address-book'
 
 
 class videoInfoXadmin(object):
@@ -30,6 +33,8 @@ class videoInfoXadmin(object):
 
     list_filter = ['name', 'study_time', 'lessonInfo','add_time']
 
+    model_icon = 'fa fa-address-book'
+
 
 class SourceInfoXadmin(object):
     list_display =['name','down_load','courseInfo','add_time']
@@ -37,6 +42,8 @@ class SourceInfoXadmin(object):
     search_fields = ['name','courseInfo']
 
     list_filter = ['name','courseInfo', 'add_time']
+
+    model_icon = 'fa fa-address-book'
 
 
 xadmin.site.register(CourseInfo,CourseInfoXadmin)
