@@ -6,6 +6,7 @@
 
 {% comment %}覆盖base的concent{% endcomment %}
 {% block content %}
+{% load staticfiles %}
     <div class="banner">
 			<div class="wp">
 				<div class="fl">
@@ -13,27 +14,27 @@
 						<ul class="imgs">
                             <li>
                                     <a href="http://www.imooc.com">
-                                        <img width="1200" height="478" src="../images/banner1.jpg" />
+                                        <img width="1200" height="478" src="{% static 'images/banner1.jpg' %}" />
                                     </a>
                                 </li>
                             <li>
                                     <a href="http://www.atguigu.com">
-                                        <img width="1200" height="478" src="../images/banner2.jpg" />
+                                        <img width="1200" height="478" src="{% static 'images/banner2.jpg' %}" />
                                     </a>
                                 </li>
                             <li>
                                     <a href="http://www.atguigu.com">
-                                        <img width="1200" height="478" src="../images/banner3.jpg" />
+                                        <img width="1200" height="478" src="{% static 'images/banner3.jpg' %}" />
                                     </a>
                                 </li>
                             <li>
                                     <a href="http://www.atguigu.com">
-                                        <img width="1200" height="478" src="../images/banner4.jpg" />
+                                        <img width="1200" height="478" src="{% static 'images/banner4.jpg' %}" />
                                     </a>
                                 </li>
                             <li>
                                     <a href="http://www.atguigu.com">
-                                        <img width="1200" height="478" src="../images/banner5.jpg" />
+                                        <img width="1200" height="478" src="{% static 'images/banner5.jpg' %}" />
                                     </a>
                                 </li>
 						</ul>
@@ -48,19 +49,19 @@
 		<div class="wp">
 			<ul class="feature">
 				<li class="feature1">
-					<img class="pic" src="../images/feature5.png"/>
+					<img class="pic" src="{% static 'images/feature5.png' %}"/>
 					<p class="center">专业权威</p>
 				</li>
 				<li class="feature2">
-					<img class="pic" src="../images/feature5.png"/>
+					<img class="pic" src="{% static 'images/feature5.png' %}"/>
 					<p class="center">课程最新</p>
 				</li>
 				<li class="feature3">
-					<img class="pic" src="../images/feature5.png"/>
+					<img class="pic" src="{% static 'images/feature5.png' %}"/>
 					<p class="center">名师授课</p>
 				</li>
 				<li class="feature4">
-					<img class="pic" src="../images/feature5.png"/>
+					<img class="pic" src="{% static 'images/feature5.png' %}"/>
 					<p class="center">数据真实</p>
 				</li>
 			</ul>
@@ -83,13 +84,13 @@
 
                                     <li>
                                         <a href="course-detail.html">
-                                            <img width="470" height="300" src="../images/mysql.jpg" />
+                                            <img width="470" height="300" src="{% static 'images/mysql.jpg' %}"/>
                                         </a>
                                     </li>
 
                                     <li>
                                         <a href="course-detail.html">
-                                            <img width="470" height="300" src="../images/mongoDB.jpg" />
+                                            <img width="470" height="300" src="{% static 'images/mongoDB.jpg' %}" />
                                         </a>
                                     </li>
 
@@ -101,7 +102,7 @@
 
                             <div class="module1_3 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/html.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/html.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -118,7 +119,7 @@
 
                             <div class="module1_4 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/css.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/css.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -135,7 +136,7 @@
 
                             <div class="module1_5 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/js基础.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/js基础.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -152,7 +153,7 @@
 
                             <div class="module1_6 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/js高级.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/js高级.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -169,7 +170,7 @@
 
                             <div class="module1_7 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/linux.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/linux.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -186,7 +187,7 @@
 
                             <div class="module1_8 box">
                                 <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/jQuery.jpg"/>
+                                    <img width="233" height="190" src="{% static 'images/jQuery.jpg' %}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
@@ -212,7 +213,7 @@
 				<h1>课程机构</h1>
 				<div class="module3 eachmod">
 					<div class="module3_1 left">
-						<img width="228" height="463" src="../images/module6_1.jpg"/>
+						<img width="228" height="463" src="{% static 'images/module6_1.jpg' %}"/>
 						<p class="fisrt_word">名校来袭<br/>权威认证</p>
 						<a class="more" href="org-list.html">查看更多机构 ></a>
 					</div>
@@ -222,7 +223,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -236,7 +237,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -250,7 +251,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -264,7 +265,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -278,7 +279,7 @@
                                 <li class="five">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -292,7 +293,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -306,7 +307,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -320,7 +321,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -334,7 +335,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -348,7 +349,7 @@
                                 <li class="five">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -362,7 +363,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -376,7 +377,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png" />
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}" />
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -390,7 +391,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -404,7 +405,7 @@
                                 <li class="">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
@@ -418,7 +419,7 @@
                                 <li class="five">
                                     <a href="org-detail-homepage.html">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="{% static 'images/org.png' %}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
