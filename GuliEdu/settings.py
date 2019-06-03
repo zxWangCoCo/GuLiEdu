@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'orgs.apps.OrgsConfig',
     'operations.apps.OperationsConfig',
     'xadmin', #配置xadmin
-    'crispy_forms' #配置xadmin
+    'crispy_forms', #配置xadmin
+    'captcha'# 第三方验证码
 ]
 
 #扩展了AbstractUser类以后必须设置AUTH_USER_MODEL

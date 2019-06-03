@@ -21,6 +21,7 @@ from users.views import index #引入index
 urlpatterns = [
    # url(r'^admin/', admin.site.urls),
     url(r'^xadmin/', xadmin.site.urls),
+    url(r'captcha',include('captcha.urls')),
     url(r'^users/',include('users.urls',namespace='users')),
     url(r'^courses/',include('courses.urls',namespace='courses')),
     url(r'^orgs/',include('orgs.urls',namespace='orgs')),

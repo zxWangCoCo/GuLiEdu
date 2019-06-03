@@ -9,7 +9,7 @@ class UserRegisterForm(forms.Form):
                                error_messages={
                                    'required':'密码必须填写',
                                    'min_length':'密码必须大于3位',
-                                   'max_length':'密码最长为15为'
+                                   'max_length':'密码最长为15位'
                                     }
                                )
 class UserLoginForm(forms.Form):
@@ -20,6 +20,6 @@ class UserLoginForm(forms.Form):
                                error_messages={
                                    'required':'密码必须填写',
                                    'min_length':'密码必须大于3位',
-                                   'max_length':'密码最长为15为'
+                                   'max_length':'密码最长为15位'
                                     }
                                )
