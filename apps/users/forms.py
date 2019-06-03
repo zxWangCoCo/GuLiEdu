@@ -1,5 +1,6 @@
 
 from django import forms
+from captcha.fields import CaptchaField
 
 class UserRegisterForm(forms.Form):
     #验证邮箱
@@ -12,6 +13,8 @@ class UserRegisterForm(forms.Form):
                                    'max_length':'密码最长为15位'
                                     }
                                )
+    # captcha邀请码
+    captcha = CaptchaField()
 class UserLoginForm(forms.Form):
     #验证邮箱
     email = forms.EmailField(required=True)

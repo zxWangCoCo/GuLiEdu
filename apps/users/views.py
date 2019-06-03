@@ -11,7 +11,11 @@ def index(request):
 ############################用户注册##############################################################
 def user_register(request):
     if request.method == 'GET':#get请求是跳页面
-        return render(request,'register.html')
+        #这里实例化form，不是为了验证,而是为了验证验证码
+        user_register_form = UserRegisterForm()
+        return render(request,'register.html',{
+            'user_register_form':user_register_form
+        })
     else:
         user_register_form = UserRegisterForm(request.POST)
         if user_register_form.is_valid():
