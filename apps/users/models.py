@@ -18,6 +18,8 @@ class UserProfile(AbstractUser) :
     phone = models.CharField(max_length=11,verbose_name="用户手机",null=True,blank=True)
     #创建时间
     add_time = models.DateTimeField(default=datetime.now,verbose_name="创建时间")
+    #控制是否激活
+    is_start = models.BooleanField(default=False,verbose_name="是否激活")
 
     def __str__(self):
         return self.username

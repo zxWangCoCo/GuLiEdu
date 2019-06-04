@@ -1,5 +1,7 @@
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render,redirect,reverse
+
 from .forms import UserRegisterForm,UserLoginForm
 from .models import UserProfile
 from django.contrib.auth import authenticate,login,logout
@@ -31,7 +33,9 @@ def user_register(request):
                 user.email = email
                 user.set_password(password)
                 user.save()
-                return redirect(reverse('index'))
+                #发送邮件
+                #SendEmailTool.send_email_code(email = email,send_type = 1)
+                #return redirect(reverse('index'))
         else:
             return render(request, 'register.html', {'user_register_form': user_register_form })
 ############################用户注册##############################################################
@@ -49,8 +53,11 @@ def user_login(request):
             #查询是否有
             user = authenticate(username=email,password=password)
             if user:
-                login(request,user)
-                return redirect(reverse('index'))
+                if user.is_start:
+                    login(request,user)
+                    return redirect(reverse('index'))
+                else:
+                    return HttpResponse('请去你的邮箱激活，否则无法登陆')
             else:
                 return render(request,'login.html',{
                     'msg':'邮箱或者密码有误'
