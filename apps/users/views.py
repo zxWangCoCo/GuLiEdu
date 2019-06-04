@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect,reverse
 
 from .forms import UserRegisterForm,UserLoginForm
-from .models import UserProfile
+from .models import UserProfile,EmailVerifyCode
 from django.contrib.auth import authenticate,login,logout
 from utils.SendEmailUtil import SendEmailUtil
+from .models import EmailVerifyCode
 # Create your views here.
 #跳转首页
 def index(request):
@@ -70,3 +71,28 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('index'))
+
+def user_active(request,code):
+    #获取code
+    if code:
+        # 根据code获取Email列表
+        email_var_list = EmailVerifyCode.objects.filter(code=code)
+        if email_var_list:
+            # 获取第一个
+            email_var = email_var_list[0]
+            # 获取email
+            email = email_var.email
+            # 根据email获取用户
+            user_list = UserProfile.objects.filter(username=email)
+            if user_list:
+                user = user_list[0]
+                # 更改用户状态为激活状态
+                user.is_start = True
+                user.save()
+                return redirect(reverse('users:user_login'))
+            else:
+                pass
+        else:
+            pass
+    else:
+        pass

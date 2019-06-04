@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import user_register,user_login,user_logout
+from .views import user_register,user_login,user_logout,user_active
 app_name = 'users'
 urlpatterns = [
     url(r'^user_register/$',user_register,name="user_register"),#注册url
     url(r'^user_login/$',user_login,name='user_login'),
-    url(r'^user_logout/$',user_logout,name='user_logout')
+    url(r'^user_logout/$',user_logout,name='user_logout'),
+    url(r'^user_active/(\w+)/$',user_active,name='user_active') # (\w+)捕获传递的参数
 ]
