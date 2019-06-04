@@ -5,6 +5,7 @@ from django.shortcuts import render,redirect,reverse
 from .forms import UserRegisterForm,UserLoginForm
 from .models import UserProfile
 from django.contrib.auth import authenticate,login,logout
+from utils.SendEmailUtil import SendEmailUtil
 # Create your views here.
 #跳转首页
 def index(request):
@@ -34,8 +35,8 @@ def user_register(request):
                 user.set_password(password)
                 user.save()
                 #发送邮件
-                #SendEmailTool.send_email_code(email = email,send_type = 1)
-                #return redirect(reverse('index'))
+                SendEmailUtil.sendEmail(email = email,send_type = 1)
+                return HttpResponse('请尽快激活您的邮箱，否则无法登陆。')
         else:
             return render(request, 'register.html', {'user_register_form': user_register_form })
 ############################用户注册##############################################################
