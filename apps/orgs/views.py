@@ -23,6 +23,11 @@ def org_list(request):
     if cityid:
         all_orgs = all_orgs.filter(cityinfo_id=int(cityid))
 
+    #根据学习人数和课程数排序
+    sort = request.GET.get('sort','')
+    if sort:
+        all_orgs = all_orgs.order_by('-'+sort)
+
     # 分页代码
     pagenum = request.GET.get('pagenum', '')
     pa = Paginator(all_orgs, 3)
@@ -39,5 +44,6 @@ def org_list(request):
         'all_citys': all_citys,
         'sort_orgs': sort_orgs,
         'cate': cate,
-        'cityid': cityid
+        'cityid': cityid,
+        'sort': sort
     })
