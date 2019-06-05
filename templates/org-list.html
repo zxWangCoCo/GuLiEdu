@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}课程机构列表 - 谷粒教育网{% endblock %}
 {% block content %}
 
@@ -65,9 +66,9 @@
                                  <h1>谷粒教育网</h1>
                                  <div class="pic fl">
 
-                                         <img src="../images/authentication.png"/>
+                                         <img src="{% static 'images/authentication.png' %}"/>
 
-                                         <img src="../images/gold.png"/>
+                                         <img src="{% static 'images/gold.png' %}"/>
 
                                  </div>
                              </a>
@@ -92,27 +93,11 @@
 		 <div class="pageturn">
             <ul class="pagelist">
 
-
-
-
-
                             <li class="active"><a href="?page=1">1</a></li>
-
-
-
-
 
                             <li><a href="?page=2" class="page">2</a></li>
 
-
-
-
-
                             <li><a href="?page=3" class="page">3</a></li>
-
-
-
-
                     <li class="long"><a href="?page=2">下一页</a></li>
 
 
@@ -124,15 +109,15 @@
 			<div class="head">我要学习</div>
 			<form class="rightform" id="jsStayForm">
 				<div>
-                    <img src="../images/rightform1.png"/>
+                    <img src="{% static 'images/rightform1.png' %}"/>
                     <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25" />
                 </div>
 				<div>
-                    <img src="../images/rightform2.png"/>
+                    <img src="{% static 'images/rightform2.png' %}"/>
                     <input type="text" name="mobile" id="companyMobile" placeholder="联系电话"/>
                 </div>
 				<div>
-                    <img src="../images/rightform3.png"/>
+                    <img src="{% static 'images/rightform3.png' %}"/>
                     <input type="text" name="course_name" id="companyAddress" placeholder="课程名" maxlength="50" />
                 </div>
                 <p class="error company-tips" id="jsCompanyTips"></p>
@@ -152,12 +137,8 @@
                         <p>北京市</p>
                     </dd>
                 </dl>
-
-
-
-
 		</div>
-        </div>
+    </div>
 </section>
 
 {% endblock %}
