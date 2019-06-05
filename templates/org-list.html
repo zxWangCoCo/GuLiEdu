@@ -23,11 +23,11 @@
 					<div class="cont">
                         <a href="?"><span {% if cate == '' %} class="active2"{% endif %}>全部</span></a>
 
-                            <a href="?cate=pxjg"><span {% if cate == 'pxjg' %} class="active2"{% endif %}>培训机构</span></a>
+                            <a href="?cate=pxjg&cityid={{ cityid }}"><span {% if cate == 'pxjg' %} class="active2"{% endif %}>培训机构</span></a>
 
-                            <a href="?cate=gx"><span {% if cate == 'gx' %} class="active2"{% endif %}>高校</span></a>
+                            <a href="?cate=gx&cityid={{ cityid }}"><span {% if cate == 'gx' %} class="active2"{% endif %}>高校</span></a>
 
-                            <a href="?cate=gr"><span {% if cate == 'gr' %} class="active2"{% endif %}>个人</span></a>
+                            <a href="?cate=gr&cityid={{ cityid }}"><span {% if cate == 'gr' %} class="active2"{% endif %}>个人</span></a>
 
 					</div>
 				</li>
@@ -38,7 +38,7 @@
                         <a href="?"><span {% if cityid == '' %} class="active2" {% endif %} >全部</span></a>
                             {% for city in all_citys %}
                                 {% comment %}|stringformat:"i" 将数字转换为字符串{% endcomment %}
-                                <a href="?cityid={{ city.id }}"><span {% if cityid == city.id|stringformat:"i" %} class="active2" {% endif %} >{{ city.name }}</span></a>
+                                <a href="?cityid={{ city.id }}&cate={{ cate }}"><span {% if cityid == city.id|stringformat:"i" %} class="active2" {% endif %} >{{ city.name }}</span></a>
                             {% endfor %}
 					</div>
 				</li>
