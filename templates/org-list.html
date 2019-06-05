@@ -100,7 +100,8 @@
                 {% endif %}
 
                 {% for num in pages.paginator.page_range %}
-                    <li class="active"><a href="?pagenum={{ num }}">{{ num }}</a></li>
+                    {% comment %}判断该页是不是当前页，如果是显示黑框{% endcomment %}
+                    <li{% if pages.number == num %} class="active"{% endif %}><a href="?pagenum={{ num }}">{{ num }}</a></li>
                 {% endfor %}
                 
                 {% comment %}如果有下页显示下页{% endcomment %}
