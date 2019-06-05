@@ -54,16 +54,17 @@
 				</ul>
 			</div>
 
-                <dl class="des difdes">
+            {% for org in pages %}
+                    <dl class="des difdes">
                     <dt>
                         <a href="org-detail-homepage.html">
-                            <img width="200" height="120" class="scrollLoading" data-url="../images/org.png"/>
+                            <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ org.image }}"/>
                         </a>
                     </dt>
                     <dd>
                         <div class="clearfix">
                              <a href="org-detail-homepage.html">
-                                 <h1>谷粒教育网</h1>
+                                 <h1>{{ org.name }}</h1>
                                  <div class="pic fl">
 
                                          <img src="{% static 'images/authentication.png' %}"/>
@@ -74,33 +75,38 @@
                              </a>
                         </div>
                         <ul class="cont">
-                            <li class="first"><p class="pic9">课程数：<span>1</span></p><p class="c7">学习人数：<span>1000</span></p></li>
-                            <li class="c8" style="padding-left:18px;">北京市昌平区北七家</li>
+                            <li class="first"><p class="pic9">课程数：<span>{{ org.course_num }}</span></p><p class="c7">学习人数：<span>{{ org.study_num }}</span></p></li>
+                            <li class="c8" style="padding-left:18px;">{{ org.address }}</li>
                             <li class="pic10" style="padding-left:18px;">经典课程：
-
-                                    <a href="/diary/19/">mysql</a>
-
-                                    <a href="/diary/16/">mongodb</a>
-
+                            {% comment %}org.courseinfo_set.all 获取org关联的course表的全部;slice表示从all里面的几个 {% endcomment %}
+                                {% for course in org.courseinfo_set.all|slice:":2" %}
+                                    <a href="/diary/19/">{{ course.name }}</a>
+                                {% endfor %}
                             </li>
                         </ul>
                     </dd>
                     <div class="buy start_groupbuy jsShowPerfect2" data-id="22"><br/>联系<br/>服务</div>
                 </dl>
+            {% endfor %}
+
 
 
 		</div>
 		 <div class="pageturn">
             <ul class="pagelist">
+                {% comment %}如果有上页显示上页{% endcomment %}
+                {% if pages.has_previous %}
+                    <li class="long"><a href="?pagenum={{ pages.previous_page_number }}">上一页</a></li>
+                {% endif %}
 
-                            <li class="active"><a href="?page=1">1</a></li>
-
-                            <li><a href="?page=2" class="page">2</a></li>
-
-                            <li><a href="?page=3" class="page">3</a></li>
-                    <li class="long"><a href="?page=2">下一页</a></li>
-
-
+                {% for num in pages.paginator.page_range %}
+                    <li class="active"><a href="?pagenum={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+                
+                {% comment %}如果有下页显示下页{% endcomment %}
+                {% if pages.has_next %}
+                    <li class="long"><a href="?pagenum={{ pages.next_page_number }}">下一页</a></li>
+                {% endif %}
             </ul>
         </div>
 		</div>
@@ -128,15 +134,16 @@
 
 		<div class="right companyrank layout">
 			<div class="head">授课机构排名</div>
-
-
-                <dl class="des">
-                    <dt class="num fl">1</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>尚硅谷</h1></a>
-                        <p>北京市</p>
-                    </dd>
-                </dl>
+                {% for org in sort_orgs %}
+                    <dl class="des">
+                       {% comment %} forloop.counter 序号{% endcomment %}
+                        <dt class="num fl">{{ forloop.counter }}</dt>
+                        <dd>
+                            <a href="/company/2/"><h1>{{ org.name }}</h1></a>
+                            <p>{{ org.cityinfo.name }}</p>
+                        </dd>
+                    </dl>
+                {% endfor %}
 		</div>
     </div>
 </section>
