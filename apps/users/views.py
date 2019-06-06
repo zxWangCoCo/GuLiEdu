@@ -17,7 +17,7 @@ def user_register(request):
     if request.method == 'GET':#get请求是跳页面
         #这里实例化form，不是为了验证,而是为了验证验证码
         user_register_form = UserRegisterForm()
-        return render(request,'register.html',{
+        return render(request,'users/register.html',{
             'user_register_form':user_register_form
         })
     else:
@@ -28,7 +28,7 @@ def user_register(request):
 
             user_list = UserProfile.objects.filter(Q(username=email) | Q(email=email))
             if user_list:
-                return render(request,'register.html',{'msg':'用户已经存在'})
+                return render(request,'users/register.html',{'msg':'用户已经存在'})
             else:
                 user = UserProfile()
                 user.username = email
@@ -39,13 +39,13 @@ def user_register(request):
                 SendEmailUtil.sendEmail(email = email,send_type = 1)
                 return HttpResponse('请尽快激活您的邮箱，否则无法登陆。')
         else:
-            return render(request, 'register.html', {'user_register_form': user_register_form })
+            return render(request, 'users/register.html', {'user_register_form': user_register_form })
 ############################用户注册##############################################################
 
 ############################用户登录##############################################################
 def user_login(request):
     if request.method == 'GET':
-        return render(request,'login.html')
+        return render(request,'users/login.html')
     else:
         user_login_form = UserLoginForm(request.POST)
         if user_login_form.is_valid():
@@ -61,11 +61,11 @@ def user_login(request):
                 else:
                     return HttpResponse('请去你的邮箱激活，否则无法登陆')
             else:
-                return render(request,'login.html',{
+                return render(request,'users/login.html',{
                     'msg':'邮箱或者密码有误'
                 })
         else:
-            return render(request, 'login.html', {'user_login_form': user_login_form})
+            return render(request, 'users/login.html', {'user_login_form': user_login_form})
 
 ##################################退出############################################################
 def user_logout(request):

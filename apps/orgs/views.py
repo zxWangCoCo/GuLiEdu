@@ -38,7 +38,7 @@ def org_list(request):
     except EmptyPage:
         pages = pa.page(pa.num_pages)
 
-    return render(request, 'org-list.html', {
+    return render(request, 'orgs/org-list.html', {
         'all_orgs': all_orgs,
         'pages': pages,
         'all_citys': all_citys,
@@ -47,3 +47,9 @@ def org_list(request):
         'cityid': cityid,
         'sort': sort
     })
+
+# org详情
+def org_detail(request,org_id):
+    if org_id:
+        org = OrgInfo.objects.filter(id=id(org_id))[0]
+        return render(request,'orgs/org-detail-homepage.html')
