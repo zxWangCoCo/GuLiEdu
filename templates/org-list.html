@@ -171,13 +171,13 @@
                     },
                     success:function (callback) {
                         if (callback.status == 'ok'){
-                            alert(callback.msg)
                             {# 成功后置空 #}
                             var name = $('#companyName').val('')
                             var phone = $('#companyMobile').val('')
                             var course = $('#companyAddress').val('')
+                            $('#jsCompanyTips').text(callback.msg)
                         }else {
-                            alert(callback.msg)
+                            $('#jsCompanyTips').text(callback.msg)
                         }
                     }
                 })
