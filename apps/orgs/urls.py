@@ -19,5 +19,6 @@ from .views import org_list,org_detail
 app_name = 'orgs'
 urlpatterns = [
     url(r'^org_list/$', org_list, name="org_list"),
+    #接受前台传过来的id
     url(r'^org_detail/(\d+)$', org_detail, name="org_detail"),
 ]

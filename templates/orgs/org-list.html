@@ -12,7 +12,6 @@
         </div>
     </section>
 
-
     <section>
 	<div class="wp butler_list_box list">
 	<div class='left'>
@@ -58,13 +57,14 @@
             {% for org in pages %}
                     <dl class="des difdes">
                     <dt>
-                        <a href="org-detail-homepage.html">
+                        {% comment %}给urls传递参数{% endcomment %}
+                        <a href="{% url 'orgs:org_detail' org.id %}">
                             <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ org.image }}"/>
                         </a>
                     </dt>
                     <dd>
                         <div class="clearfix">
-                             <a href="org-detail-homepage.html">
+                             <a href="org-detail-base.html">
                                  <h1>{{ org.name }}</h1>
                                  <div class="pic fl">
 
@@ -140,7 +140,7 @@
                        {% comment %} forloop.counter 序号{% endcomment %}
                         <dt class="num fl">{{ forloop.counter }}</dt>
                         <dd>
-                            <a href="/company/2/"><h1>{{ org.name }}</h1></a>
+                            <a href="{% url 'orgs:org_detail' org.id %}"><h1>{{ org.name }}</h1></a>
                             <p>{{ org.cityinfo.name }}</p>
                         </dd>
                     </dl>
