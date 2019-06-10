@@ -55,3 +55,22 @@ def org_detail(request,org_id):
         return render(request, 'orgs/org-detail-homepage.html',{
             'org':org
         })
+
+def org_detail_course(request,org_id):
+    if org_id:
+        org = OrgInfo.objects.filter(id=int(org_id))[0]
+        all_org = org.courseinfo_set.all()
+        # 分页代码
+        pagenum = request.GET.get('pagenum', '')
+        pa = Paginator(all_org, 3)
+        try:
+            pages = pa.page(pagenum)
+        except PageNotAnInteger:
+            pages = pa.page(1)
+        except EmptyPage:
+            pages = pa.page(pa.num_pages)
+        return render(request, 'orgs/org-detail-course.html', {
+            'org': org,
+            'pages':pages
+        })
+
