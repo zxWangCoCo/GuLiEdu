@@ -52,4 +52,6 @@ def org_list(request):
 def org_detail(request,org_id):
     if org_id:
         org = OrgInfo.objects.filter(id=int(org_id))[0]
-        return render(request, 'orgs/org-detail-base.html')
+        return render(request, 'orgs/org-detail-homepage.html',{
+            'org':org
+        })

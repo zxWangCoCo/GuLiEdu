@@ -1,4 +1,5 @@
 {% extends 'orgs/org-detail-base.html' %}
+{% load staticfiles %}
 {% block title %}机构首页{% endblock %}
 {% block breach %}机构首页{% endblock %}
 {% block right %}
@@ -8,54 +9,24 @@
 			<a class="green fr more" href="org-detail-course.html">查看更多  >  </a>
 		</div>
 		<div class="brief group_list">
-
-                <div class="module1_5 box">
-                    <a href="course-detail.html"><img width="214" src="../images/js基础.jpg"/></a>
+                {% for course in org.courseinfo_set.all %}
+                    <div class="module1_5 box">
+                    <a href="course-detail.html"><img width="214" src="{{ MEDIA_URL }}{{ course.image }}"/></a>
                     <div class="des">
-                        <a href="course-detail.html"><h2>javascript基础</h2></a>
-                        <span class="fl">课时：<i class="key">0</i></span>
-                        <span class="fr">参加人数：3</span>
+                        <a href="course-detail.html"><h2>{{ course.name }}</h2></a>
+                        <span class="fl">课时：<i class="key">{{ course.study_time }}</i></span>
+                        <span class="fr">参加人数：{{ course.study_num }}</span>
                     </div>
                     <div class="bottom">
-                        <span class="fl">谷粒教育网</span>
+                        <span class="fl">{{ org.name }}</span>
                          <span class="star fr  notlogin
                             " data-favid="13"  data-fav-type="4">
-                            0
+                            {{ course.love_num }}
                         </span>
                     </div>
                 </div>
-
-                <div class="module1_5 box">
-                    <a href="course-detail.html"><img width="214" src="../images/js高级.jpg"/></a>
-                    <div class="des">
-                        <a href="course-detail.html"><h2>javascript高级</h2></a>
-                        <span class="fl">课时：<i class="key">0</i></span>
-                        <span class="fr">参加人数：0</span>
-                    </div>
-                    <div class="bottom">
-                        <span class="fl">谷粒教育网</span>
-                         <span class="star fr  notlogin
-                            " data-favid="13"  data-fav-type="4">
-                            0
-                        </span>
-                    </div>
-                </div>
-
-                <div class="module1_5 box">
-                    <a href="course-detail.html"><img width="214" src="../images/jQuery.jpg"/></a>
-                    <div class="des">
-                        <a href="course-detail.html"><h2>jquery全讲</h2></a>
-                        <span class="fl">课时：<i class="key">0</i></span>
-                        <span class="fr">参加人数：0</span>
-                    </div>
-                    <div class="bottom">
-                        <span class="fl">谷粒教育网</span>
-                         <span class="star fr  notlogin
-                            " data-favid="13"  data-fav-type="4">
-                            0
-                        </span>
-                    </div>
-                </div>
+                {% endfor %}
+                
 
 
 		</div>
@@ -69,7 +40,7 @@
         <div class="diarys">
             <div class="module5 share company-diary-box" style="padding:10px 0;">
                 <div class="left">
-                    <img class="pic" src="../images/touxiang.jpg"/>
+                    <img class="pic" src="{% static 'images/touxiang.jpg' %}"/>
                     <p>昵称：weesmile</p>
                 </div>
                 <div class="right">
