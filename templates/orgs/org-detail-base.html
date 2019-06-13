@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block mycss %}
     <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/queryCity/css/cityLayout.css' %}">
-    {% block myjs %} {% endblock %}
+    {% block mycss1 %} {% endblock %}
 {% endblock %}
 
 {% block middle %}
@@ -21,8 +21,7 @@
                     <span class="key">5.0</span>
                 </p>
             </div>
-            <div class="btn fr collectionbtn  notlogin
-                 "data-favid="22" data-fav-type="1">
+            <div class="btn fr collectionbtn  notlogin" data-favid="22" data-fav-type="1" id="love">
                  收藏
             </div>
 
@@ -59,19 +58,13 @@
     </section>
 {% endblock %}
 
-<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
-<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
-<script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %}"></script>
-<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
-<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}"  type="text/javascript"></script>
-<script src="{% static 'js/deco-common.js' %}"  type="text/javascript"></script>
-<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% block footer %}{% endblock %}
+
+{% block myjs %}
 <script type="text/javascript" src="{% static 'js/plugins/jquery.raty.js' %}"></script>
 
 <script type="text/javascript">
-        $(function(){
+    $(function(){
             var $precision = $('.precision'),
                 score = $precision.attr('data-star-scope'),
                 option =  {
@@ -88,7 +81,28 @@
                             score       : score
                         };
             $precision.raty(option);
-        })
+
+            $('#love').click(function () {
+                var loveid = {{ org.id }}
+                var lovetype = 1
+                $.ajax({
+                    type:'GET',
+                    data:{
+                        'love_id':loveid,
+                        'love_type':lovetype
+                    },
+                    url:'{% url 'operations:user_love' %}',
+                    success:function (callback) {
+                        if (callback.status == 'ok') {
+                            $('#love').text(callback.msg)
+                        }else {
+                            alert(callback.msg)
+                        }
+                    }
+                })
+            })
+    })
 </script>
     {% block myjs1 %}{% endblock %}
+{% endblock %}
 

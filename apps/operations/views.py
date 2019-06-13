@@ -1,5 +1,6 @@
 from .forms import UserAskForms
 from django.http import JsonResponse
+from .models import UserLove
 
 def user_ask(request):
     user_ask_form = UserAskForms(request.POST)
@@ -11,3 +12,31 @@ def user_ask(request):
         return JsonResponse({'status':'ok','msg':'咨询成功'})
     else:
         return JsonResponse({'status': 'fail', 'msg': '咨询失败'})
+
+
+def user_love(request):
+    love_id = request.GET.get('love_id','')
+    love_type = request.GET.get('love_id','')
+    if love_id and love_type:
+        love = UserLove.objects.filter(love_id=int(love_id),love_type=int(love_type),love_man=request.user)
+        if love:
+            if love[0].love_status:
+                # 取消收藏
+                love[0].love_status = False
+                love[0].save()
+                return JsonResponse({'status':'ok','msg':'收藏'})
+            else:
+                # 收藏
+                love[0].love_status = True
+                love[0].save()
+                return JsonResponse({'status': 'ok', 'msg': '取消收藏'})
+        else:
+            a = UserLove()
+            a.love_man = request.user
+            a.love_id = int(love_id)
+            a.love_type = int(love_type)
+            a.love_status = True
+            a.save()
+            return JsonResponse({'status': 'ok', 'msg': '收藏'})
+    else:
+        return JsonResponse({'status': 'fail', 'msg': '收藏失败'})
