@@ -17,20 +17,24 @@ def user_ask(request):
 def user_love(request):
     love_id = request.GET.get('love_id','')
     love_type = request.GET.get('love_id','')
+    # 验证参数
     if love_id and love_type:
+        # 查询是否收藏过 request.user 在登录的时候已经存了用户信息
         love = UserLove.objects.filter(love_id=int(love_id),love_type=int(love_type),love_man=request.user)
+        # 如果有过收藏
         if love:
+            # 状态为取消收藏 修改状态为收藏
             if love[0].love_status:
-                # 取消收藏
                 love[0].love_status = False
                 love[0].save()
                 return JsonResponse({'status':'ok','msg':'收藏'})
             else:
-                # 收藏
+                # 如果收藏过了 但状态是取消收藏 修改状态(收藏)
                 love[0].love_status = True
                 love[0].save()
                 return JsonResponse({'status': 'ok', 'msg': '取消收藏'})
         else:
+            # 如果没有收藏记录,直接收藏,状态为收藏
             a = UserLove()
             a.love_man = request.user
             a.love_id = int(love_id)
