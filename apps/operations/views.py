@@ -13,7 +13,7 @@ def user_ask(request):
     else:
         return JsonResponse({'status': 'fail', 'msg': '咨询失败'})
 
-
+# 会员收藏机构
 def user_love(request):
     love_id = request.GET.get('love_id','')
     love_type = request.GET.get('love_id','')
