@@ -12,6 +12,10 @@ def course_list(request):
     #获取推荐的(按时间倒序)
     recomend_courses = all_course.order_by('-add_time')[:3]
 
+    sort = request.GET.get('sort','')
+    if sort:
+        all_course.order_by('-'+sort)
+
     # 分页代码
     pagenum = request.GET.get('pagenum', '')
     pa = Paginator(all_course, 3)
