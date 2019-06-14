@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-
+from .views import course_list
 app_name = 'courses'
 urlpatterns = [
-
+    url(r'^course_list/$',course_list,name='course_list'),
 ]
