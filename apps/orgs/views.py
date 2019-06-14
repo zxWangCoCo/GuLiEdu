@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import OrgInfo, TeacherIfo, CityInfo
+from operations.models import UserLove
 # 分页相关
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
@@ -52,14 +53,31 @@ def org_list(request):
 def org_detail(request,org_id):
     if org_id:
         org = OrgInfo.objects.filter(id=int(org_id))[0]
+        lovestatus = False
+        # 经过认证
+        if request.user.is_authenticated():
+            # 看看是否收藏
+            love = UserLove.objects.filter(love_man=request.user,love_id=int(org_id),love_type=1,love_status=True)
+            if love:
+                lovestatus = True
+
+        #返回收藏状态
         return render(request, 'orgs/org-detail-homepage.html',{
-            'org':org
+            'org':org,
+            'lovestatus':lovestatus
         })
 
 def org_detail_course(request,org_id):
     if org_id:
         org = OrgInfo.objects.filter(id=int(org_id))[0]
         all_org = org.courseinfo_set.all()
+        lovestatus = False
+        # 经过认证
+        if request.user.is_authenticated():
+            # 看看是否收藏
+            love = UserLove.objects.filter(love_man=request.user, love_id=int(org_id), love_type=1, love_status=True)
+            if love:
+                lovestatus = True
         # 分页代码
         pagenum = request.GET.get('pagenum', '')
         pa = Paginator(all_org, 3)
@@ -71,19 +89,36 @@ def org_detail_course(request,org_id):
             pages = pa.page(pa.num_pages)
         return render(request, 'orgs/org-detail-course.html', {
             'org': org,
-            'pages':pages
+            'pages':pages,
+            'lovestatus':lovestatus
         })
 
 def org_detail_desc(request,org_id):
     if org_id:
         org = OrgInfo.objects.filter(id=int(org_id))[0]
+        lovestatus = False
+        # 经过认证
+        if request.user.is_authenticated():
+            # 看看是否收藏
+            love = UserLove.objects.filter(love_man=request.user, love_id=int(org_id), love_type=1, love_status=True)
+            if love:
+                lovestatus = True
         return render(request, 'orgs/org-detail-desc.html', {
-            'org': org
+            'org': org,
+            'lovestatus':lovestatus
         })
 
 def org_detail_teacher(request,org_id):
     if org_id:
         org = OrgInfo.objects.filter(id=int(org_id))[0]
+        lovestatus = False
+        # 经过认证
+        if request.user.is_authenticated():
+            # 看看是否收藏
+            love = UserLove.objects.filter(love_man=request.user, love_id=int(org_id), love_type=1, love_status=True)
+            if love:
+                lovestatus = True
         return render(request, 'orgs/org-detail-teachers.html', {
-            'org': org
+            'org': org,
+            'lovestatus':lovestatus
         })
