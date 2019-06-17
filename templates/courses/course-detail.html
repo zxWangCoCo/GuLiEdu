@@ -118,7 +118,7 @@
                             {% for re in re_course %}
                                 <dl>
                                     <dt>
-                                        <a target="_blank" href="">
+                                        <a target="_blank" href="{% url 'courses:course_detail' re.id %}">
                                          <img width="240" height="220" class="scrollLoading" src="{{ MEDIA_URL }}{{ re.image }}"/>
                                         </a>
                                  </dt>
@@ -135,4 +135,52 @@
 		</div>
 	</div>
 </section>
+{% endblock %}
+{% block myjs %}
+    <script>
+        $(function () {
+            {% comment %}收藏课程{% endcomment %}
+            $('#jsLeftBtn').click(function () {
+                var love_id = {{ course.id }}
+                var love_type = 2
+                $.ajax({
+                    url:'{% url 'operations:user_love' %}',
+                    type:'GET',
+                    data:{
+                        'love_id':love_id,
+                        'love_type':love_type
+                    },
+                    success:function (callback) {
+                        if(callback.status == 'ok'){
+                            $('#jsLeftBtn').text(callback.msg)
+                        }else {
+                            alert(callback.msg)
+                        }
+                    }
+                })
+            });
+
+            {% comment %}收藏机构{% endcomment %}
+            $('#jsRightBtn').click(function (callback) {
+                var love_id = {{ course.orgInfo.id}}
+                var love_type = 1
+                $.ajax({
+                    url:'{% url 'operations:user_love' %}',
+                    type:'GET',
+                    data:{
+                        'love_id':love_id,
+                        'love_type':love_type
+                    },
+                    success:function (callback) {
+                        if(callback.status == 'ok'){
+                            $('#jsRightBtn').text(callback.msg)
+                        }else {
+                            alert(callback.msg)
+                        }
+                    }
+                })
+            });
+        })
+    
+    </script>
 {% endblock %}

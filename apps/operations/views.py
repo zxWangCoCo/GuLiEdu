@@ -16,7 +16,7 @@ def user_ask(request):
 # 会员收藏机构
 def user_love(request):
     love_id = request.GET.get('love_id','')
-    love_type = request.GET.get('love_id','')
+    love_type = request.GET.get('love_type','')
     # 验证参数
     if love_id and love_type:
         # 查询是否收藏过 request.user 在登录的时候已经存了用户信息
