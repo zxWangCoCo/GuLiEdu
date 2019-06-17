@@ -35,8 +35,8 @@ def course_detail(request,id):
     if id:
         course = CourseInfo.objects.filter(id=int(id))[0]
         # 获取相关课程 exclude()排除自己
-        #re_course = CourseInfo.objects.filter(category=course.category).exclude(id=int(id))[0]
+        re_course = CourseInfo.objects.filter(category=course.category).exclude(id=int(course.id))[0]
         return  render(request,'courses/course-detail.html',{
-            'course':course
-           # 're_course':re_course,
+            'course':course,
+            're_course':re_course,
         })
