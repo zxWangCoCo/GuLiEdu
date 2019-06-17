@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import CourseInfo
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from operations.models import UserLove
 # Create your views here.
 
 def course_list(request):
@@ -36,8 +36,19 @@ def course_detail(request,id):
         course = CourseInfo.objects.filter(id=int(id))[0]
         # 获取相关课程 exclude()排除自己
         re_course = CourseInfo.objects.filter(category=course.category).exclude(id=int(course.id))[:2]
+        lovecourse = False
+        loveorg = False
+        if request.user.is_authenticated():
+            love = UserLove.objects.filter(love_id=int(id),love_type=2,love_status=True,love_man=request.user)
+            if love:
+                lovecourse = True
+            love = UserLove.objects.filter(love_id=course.orgInfo.id, love_type=1, love_status=True, love_man=request.user)
+            if love:
+                loveorg = True
         return  render(request,'courses/course-detail.html',{
             'course':course,
             're_course':re_course,
+            'lovecourse':lovecourse,
+            'loveorg':loveorg
         })
 
