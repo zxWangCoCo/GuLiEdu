@@ -52,3 +52,11 @@ def course_detail(request,id):
             'loveorg':loveorg
         })
 
+def course_video(request,course_id):
+    if course_id:
+        course = CourseInfo.objects.filter(id=int(course_id))[0]
+        return render(request,'courses/course-video.html',{
+            'course':course
+        })
+
+
