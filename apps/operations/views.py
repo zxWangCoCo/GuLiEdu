@@ -1,6 +1,8 @@
+from django.shortcuts import render
 from .forms import UserAskForms
 from django.http import JsonResponse
-from .models import UserLove
+from .models import UserLove,UserComment
+from courses.models import CourseInfo
 
 def user_ask(request):
     user_ask_form = UserAskForms(request.POST)
@@ -44,3 +46,13 @@ def user_love(request):
             return JsonResponse({'status': 'ok', 'msg': '收藏'})
     else:
         return JsonResponse({'status': 'fail', 'msg': '收藏失败'})
+
+def course_comment_list(request,course_id):
+    if course_id:
+        #获取改课程的评论
+        comment_list = UserComment.objects.filter(comment_course_id=int(course_id))
+        course = CourseInfo.objects.filter(id=int(course_id))[0]
+        return render(request, 'courses/course-comment.html', {
+            'comment_list': comment_list,
+            'course':course
+        })
