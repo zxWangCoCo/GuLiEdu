@@ -174,4 +174,32 @@
     </div>
 {% endblock %}
 
-<html>
+{% block myjs %}
+    <script>
+        $(function () {
+            {% comment %} 发表评论 {% endcomment %}
+            $('#js-pl-submit').click(function () {
+                var course = {{ course.id }}
+                var content = $('#js-pl-textarea').val()
+
+                $.ajax({
+                    url:'{% url 'operations:user_comment' %}',
+                    type:'POST',
+                    data:{
+                        'course':course,
+                        'content':content,
+                        'csrfmiddlewaretoken':'{{ csrf_token }}'
+                    },
+                    success:function (callback) {
+                        if(callback.status == 'ok'){
+                            alert(callback.msg)
+                            window.location.reload();
+                        }else {
+                            alert(callback.msg)
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

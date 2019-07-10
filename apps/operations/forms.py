@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserAsk
+from .models import UserAsk,UserComment
 from utils.RegexpUtil import RegexpUtil
 
 class UserAskForms(forms.ModelForm):
@@ -21,5 +21,12 @@ class UserAskForms(forms.ModelForm):
             return phone
         else:
             raise forms.ValidationError('手机号码不合法')
+
+class UserCommentForms(forms.Form):
+    #认证
+    course = forms.IntegerField(required=True)
+    content = forms.CharField(required=True,min_length=1,max_length=300)
+
+
 
 
