@@ -122,3 +122,29 @@ def org_detail_teacher(request,org_id):
             'org': org,
             'lovestatus':lovestatus
         })
+
+def teacher_list(request):
+
+    teacher_list = TeacherIfo.objects.all()
+
+    sort = request.GET.get('sort','')
+    if sort:
+        teacher_list = teacher_list.order_by('-'+'click_num')
+
+    # 分页代码
+    pagenum = request.GET.get('pagenum', '')
+    pa = Paginator(teacher_list, 5)
+    try:
+        pages = pa.page(pagenum)
+    except PageNotAnInteger:
+        pages = pa.page(1)
+    except EmptyPage:
+        pages = pa.page(pa.num_pages)
+
+    order_teacher_list = TeacherIfo.objects.all().order_by('-'+'love_num')[:5]
+
+    return render(request,'teacher/teachers-list.html',{
+        'pages':pages,
+        'order_teacher_list':order_teacher_list,
+        'sort':sort
+    })
