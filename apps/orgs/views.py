@@ -148,3 +148,31 @@ def teacher_list(request):
         'order_teacher_list':order_teacher_list,
         'sort':sort
     })
+
+def teacher_detail(request,id):
+    if id:
+        # 教师详情
+        teacher = TeacherIfo.objects.filter(id=int(id))[0]
+
+    # 教师排行
+    order_teacher_list = TeacherIfo.objects.all().order_by('-' + 'love_num')[:3]
+
+    # 是否收藏改老师
+    love_teacher = False
+    user_love_teacher = UserLove.objects.filter(love_man=request.user,love_id=teacher.id)[0]
+    if user_love_teacher:
+        love_teacher = True
+
+
+    # 是否收藏改机构
+    love_org = OrgInfo.objects.filter(id=teacher.work_company.id)
+    user_love_org = False
+    if love_org:
+        user_love_org = True
+
+    return render(request,'teacher/teacher-detail.html',{
+        'teacher':teacher,
+        'order_teacher_list':order_teacher_list,
+        'love_teacher':love_teacher,
+        'user_love_org':user_love_org
+    })

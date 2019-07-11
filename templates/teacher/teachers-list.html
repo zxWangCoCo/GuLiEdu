@@ -41,7 +41,7 @@
 						</div>
 					</dt>
 					<dd>
-						<a href="/org/teacher/detail/1/">
+						<a href="{% url 'orgs:teacher_detail' teacher.id %}">
                             <h1>{{ teacher.name }}<span class="key picbig">{{ teacher.work_position }}</span></h1>
                         </a>
 						<ul class="cont">
@@ -52,7 +52,7 @@
 							<li>教学特点：<span>{{ teacher.work_style }}</span></li>
 						</ul>
 					</dd>
-                    <a class="buy buyservice" href="/org/teacher/detail/1/"><br/>查看<br/>详情</a>
+                    <a class="buy buyservice" href="{% url 'orgs:teacher_detail' teacher.id %}"><br/>查看<br/>详情</a>
                 </dl>
             {% endfor %}
 
