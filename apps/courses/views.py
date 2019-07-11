@@ -79,4 +79,32 @@ def course_video(request,course_id):
             'course_list':course_list
         })
 
+def course_comment(request,course_id):
+    if course_id:
+        course = CourseInfo.objects.filter(course_id=int(course_id))[0]
+
+        course = CourseInfo.objects.filter(id=int(course_id))[0]
+        # 当用户点击学习时,代表该用户学习了该课程，如果没有学习则加上学习操作
+        usercourse_list = UserCourse.objects.filter(study_course=course, study_man=request.user)
+        if not usercourse_list:
+            a = UserCourse()
+            a.study_man = request.user
+            a.study_course = course
+            a.save()
+
+        # 学过该课程的学生还学过什么
+        usercourse_list = UserCourse.objects.filter(study_course=course)
+        # 列表生成式
+        user_list = [usercourse.study_man for usercourse in usercourse_list]
+        # __in:在哪个范围内
+        # exclude去除...
+        usercourse_list = UserCourse.objects.filter(study_man__in=user_list).exclude(study_course=course)
+        # 拿到课程
+        # set()用于去重
+        course_list = list(set([usercourse.study_course for usercourse in usercourse_list]))
+
+        return render(request, 'courses/course-comment.html', {
+            'course': course,
+            'course_list':course_list
+        })
 

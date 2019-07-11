@@ -113,33 +113,33 @@
                             <div class="box mb40">
                             <h4>资料下载</h4>
                             <ul class="downlist">
-
-                                <li>
-                                    <span ><i class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;开发流程</span>
-                                    <a href="../media/course/resource/2016/11/media.zip" class="downcode" target="_blank" download="" data-id="274" title="">下载</a>
-                                </li>
-
+                                {% for source in course.sourceinfo_set.all %}
+                                    <li>
+                                        <span ><i class="aui-iconfont aui-icon-file"></i>{{ source.name }}</span>
+                                        <a href="{{ MEDIA_URL }}{{ source.down_load }}" class="downcode" target="_blank" download="" data-id="274" title="">下载</a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                             <div class="box mb40">
                             <h4>讲师提示</h4>
                             <div class="teacher-info">
                                 <a href="/u/315464/courses?sort=publish" target="_blank">
-                                    <img src='../images/touxiang.jpg' width='80' height='80' />
+                                    <img src='{{ MEDIA_URL }}{{ course.teacherIfo.image }}' width='80' height='80' />
                                 </a>
             <span class="tit">
-              <a href="/u/315464/courses?sort=publish" target="_blank">weesmile</a>
+              <a href="/u/315464/courses?sort=publish" target="_blank">{{ course.teacherIfo.name }}</a>
             </span>
-                                <span class="job">xxx</span>
+                                <span class="job">{{ course.teacherIfo.work_position }}</span>
                             </div>
                             <div class="course-info-tip">
                                 <dl class="first">
                                     <dt>课程须知</dt>
-                                    <dd class="autowrap">好好学</dd>
+                                    <dd class="autowrap">{{ course.course_need }}</dd>
                                 </dl>
                                 <dl>
                                     <dt>老师告诉你能学到什么？</dt>
-                                    <dd class="autowrap">好好学</dd>
+                                    <dd class="autowrap">{{ course.teacher_tell }}</dd>
                                 </dl>
                             </div>
                         </div>
@@ -153,13 +153,14 @@
                                     <div class="cp-tab-pannel js-comp-tab-pannel" data-pannel="course" style="display: block">
                                         <!-- img 200 x 112 -->
                                         <ul class="other-list">
-                                            <li class="curr">
-                                                <a href="/view/85?src=sug" target="_blank">
-                                                    <img src="../images/html.jpg" alt="html">
-                                                    <span class="name autowrap">前端三宝之html</span>
-                                                </a>
-                                            </li>
-
+                                            {% for course in course_list %}
+                                                <li class="curr">
+                                                    <a href="/view/85?src=sug" target="_blank">
+                                                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="html">
+                                                        <span class="name autowrap">{{ course.name }}</span>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
 
