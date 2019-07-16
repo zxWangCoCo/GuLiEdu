@@ -1,13 +1,12 @@
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.views.decorators.csrf import csrf_exempt
-
-from .forms import UserRegisterForm, UserLoginForm
+from .forms import UserRegisterForm, UserLoginForm,UserChangeImageForm
 from .models import UserProfile, EmailVerifyCode
 from django.contrib.auth import authenticate, login, logout
 from utils.SendEmailUtil import SendEmailUtil
 from .models import EmailVerifyCode
+from django.http import JsonResponse
 # Create your views here.
 # 跳转首页
 
@@ -111,3 +110,19 @@ def user_active(request, code):
             pass
     else:
         pass
+
+def user_info(request):
+    return render(request,'users/usercenter-info.html')
+
+def user_change_image(request):
+    # request.FILES 获取文件
+    # instance=我传过来的是当前用户的示例,通常代表着修改哪个对象(要修改必须加上instance)
+    user_change_image_form = UserChangeImageForm(request.POST,request.FILES,instance=request.user)
+    if user_change_image_form.is_valid():
+        user_change_image_form.save(commit=True)
+        return JsonResponse({'status': 'ok'})
+    else:
+        return JsonResponse({'status': 'fail'})
+
+
+
